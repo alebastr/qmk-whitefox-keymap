@@ -1,4 +1,4 @@
-FROM fedora-minimal:30
+FROM registry.fedoraproject.org/fedora-minimal:30
 
 RUN microdnf -y --setopt=tsflags=nodocs install \
         arm-none-eabi-binutils-cs \
