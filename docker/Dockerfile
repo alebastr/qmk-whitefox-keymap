@@ -6,7 +6,7 @@ RUN microdnf -y --setopt=tsflags=nodocs install \
         arm-none-eabi-gcc-cs-c++ \
         arm-none-eabi-newlib \
         diffutils \
-        git \
+        git-core \
         make \
         patch \
     && microdnf -y clean all
