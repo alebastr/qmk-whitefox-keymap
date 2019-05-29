@@ -12,8 +12,8 @@ diff --git a/build_keyboard.mk b/build_keyboard.mk
 index 1d60f3ad7..ffa30158f 100644
 --- a/build_keyboard.mk
 +++ b/build_keyboard.mk
-@@ -135,7 +135,7 @@ ifeq ($(strip $(CONVERT_TO_PROTON_C)), yes)
-     OPT_DEFS += -DCONVERT_TO_PROTON_C
+@@ -147,7 +147,7 @@ ifeq ($(strip $(CONVERT_TO_PROTON_C)), yes)
+     TARGET := $(TARGET)_$(FORCE_LAYOUT)
  endif
  
 -include quantum/mcu_selection.mk
@@ -21,6 +21,13 @@ index 1d60f3ad7..ffa30158f 100644
  
  ifdef MCU_FAMILY
      OPT_DEFS += -DQMK_STM32
+@@ -401,5 +401,5 @@ all: build check-size
+ build: elf cpfirmware
+ check-size: build
+ 
+-include show_options.mk
++include $(TOP_DIR)/show_options.mk
+ include $(TMK_PATH)/rules.mk
 diff --git a/quantum/visualizer/visualizer.mk b/quantum/visualizer/visualizer.mk
 index 3bf3f7de6..afdc5551e 100644
 --- a/quantum/visualizer/visualizer.mk

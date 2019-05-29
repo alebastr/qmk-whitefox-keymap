@@ -29,7 +29,7 @@ index d225fe821..17e1d08a0 100644
  
  # Set the filename for the final firmware binary
  KEYBOARD_FILESAFE := $(subst /,_,$(KEYBOARD))
-@@ -46,11 +48,11 @@ KEYBOARD_FOLDER_3 := $(notdir $(KEYBOARD_FOLDER_PATH_3))
+@@ -51,11 +53,11 @@ KEYBOARD_FOLDER_3 := $(notdir $(KEYBOARD_FOLDER_PATH_3))
  KEYBOARD_FOLDER_4 := $(notdir $(KEYBOARD_FOLDER_PATH_4))
  KEYBOARD_FOLDER_5 := $(notdir $(KEYBOARD_FOLDER_PATH_5))
  KEYBOARD_PATHS :=
@@ -46,7 +46,7 @@ index d225fe821..17e1d08a0 100644
  
  ifneq ("$(wildcard $(KEYBOARD_PATH_5)/)","")
      KEYBOARD_PATHS += $(KEYBOARD_PATH_5)
-@@ -249,8 +251,12 @@ else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_1)/keymap.c)","")
+@@ -118,8 +120,12 @@ else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_1)/keymap.c)","")
      -include $(MAIN_KEYMAP_PATH_1)/rules.mk
      KEYMAP_C := $(MAIN_KEYMAP_PATH_1)/keymap.c
      KEYMAP_PATH := $(MAIN_KEYMAP_PATH_1)
@@ -60,7 +60,7 @@ index d225fe821..17e1d08a0 100644
  else
      $(error Could not find keymap)
      # this state should never be reached
-@@ -260,7 +266,7 @@ endif
+@@ -306,7 +312,7 @@ endif
  ifeq ("$(USER_NAME)","")
      USER_NAME := $(KEYMAP)
  endif
@@ -69,9 +69,9 @@ index d225fe821..17e1d08a0 100644
  
  -include $(USER_PATH)/rules.mk
  ifneq ("$(wildcard $(USER_PATH)/config.h)","")
-@@ -291,10 +297,10 @@ VPATH += $(KEYBOARD_PATHS)
+@@ -337,10 +343,10 @@ VPATH += $(KEYBOARD_PATHS)
+ VPATH += $(KEYBOARD_PATHS)
  VPATH += $(COMMON_VPATH)
- VPATH += $(USER_PATH)
  
 -include common_features.mk
 +include $(TOP_DIR)/common_features.mk
@@ -80,8 +80,8 @@ index d225fe821..17e1d08a0 100644
 -include bootloader.mk
 +include $(TOP_DIR)/bootloader.mk
  
- SRC += $(TMK_COMMON_SRC)
- OPT_DEFS += $(TMK_COMMON_DEFS)
+ SRC += $(patsubst %.c,%.clib,$(LIB_SRC))
+ SRC += $(patsubst %.c,%.clib,$(QUANTUM_LIB_SRC))
 diff --git a/common.mk b/common.mk
 index 272d170e6..b12bd9c96 100644
 --- a/common.mk
