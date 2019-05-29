@@ -5,6 +5,7 @@ RUN microdnf -y --setopt=tsflags=nodocs install \
         arm-none-eabi-gcc-cs \
         arm-none-eabi-gcc-cs-c++ \
         arm-none-eabi-newlib \
+        dfu-util \
         diffutils \
         git-core \
         make \
@@ -18,7 +19,6 @@ RUN microdnf -y --setopt=tsflags=nodocs install \
 #        avr-libc \
 #        avrdude \
 #        dfu-programmer \
-#        dfu-util \
 #        gcc \
 #        gcc-c++ \
 #        wget \
