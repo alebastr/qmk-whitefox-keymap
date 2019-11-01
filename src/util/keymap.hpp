@@ -55,6 +55,11 @@ constexpr auto str2keycode = util::make_cmap<decltype(STR("")), keycode_t>(
         FN24, FN25, FN26, FN27, FN28, FN29, FN30, FN31
     ),
     map_list(KC2,
+        ("MO1", MO(1)), ("MO2", MO(2)), ("MO3", MO(3)), ("MO4", MO(4)),
+        ("MO5", MO(5)), ("MO6", MO(6)), ("MO7", MO(7)), ("MO8", MO(8)),
+        ("MO9", MO(9))
+    ),
+    map_list(KC2,
         // conflicts with some tmk macros defined as F0...Fxx
         ( "F1",  KC_F1), ( "F2",  KC_F2), ( "F3",  KC_F3), ( "F4",  KC_F4),
         ( "F5",  KC_F5), ( "F6",  KC_F6), ( "F7",  KC_F7), ( "F8",  KC_F8),
