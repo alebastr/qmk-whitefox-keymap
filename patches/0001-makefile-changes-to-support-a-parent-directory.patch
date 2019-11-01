@@ -46,20 +46,30 @@ index d225fe821..17e1d08a0 100644
  
  ifneq ("$(wildcard $(KEYBOARD_PATH_5)/)","")
      KEYBOARD_PATHS += $(KEYBOARD_PATH_5)
-@@ -118,8 +120,12 @@ else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_1)/keymap.c)","")
-     -include $(MAIN_KEYMAP_PATH_1)/rules.mk
-     KEYMAP_C := $(MAIN_KEYMAP_PATH_1)/keymap.c
-     KEYMAP_PATH := $(MAIN_KEYMAP_PATH_1)
-+else ifneq ("$(wildcard keymap.c)","")
-+    -include rules.mk
-+    KEYMAP_C := keymap.c
-+    KEYMAP_PATH := .
- else ifneq ($(LAYOUTS),)
--    include build_layout.mk
-+    include $(TOP_DIR)/build_layout.mk
- else
-     $(error Could not find keymap)
-     # this state should never be reached
+@@ -99,7 +103,7 @@ MAIN_KEYMAP_PATH_4 := $(KEYBOARD_PATH_4)/keymaps/$(KEYMAP)
+ MAIN_KEYMAP_PATH_5 := $(KEYBOARD_PATH_5)/keymaps/$(KEYMAP)
+
+ # Check for keymap.json first, so we can regenerate keymap.c
+-include build_json.mk
++include $(TOP_DIR)/build_json.mk
+
+ ifeq ("$(wildcard $(KEYMAP_PATH))", "")
+     # Look through the possible keymap folders until we find a matching keymap.c
+@@ -118,9 +120,13 @@ else ifneq ("$(wildcard $(MAIN_KEYMAP_PATH_1)/keymap.c)","")
+         -include $(MAIN_KEYMAP_PATH_1)/rules.mk
+         KEYMAP_C := $(MAIN_KEYMAP_PATH_1)/keymap.c
+         KEYMAP_PATH := $(MAIN_KEYMAP_PATH_1)
++    else ifneq ("$(wildcard keymap.c)","")
++        -include rules.mk
++        KEYMAP_C := keymap.c
++        KEYMAP_PATH := .
+     else ifneq ($(LAYOUTS),)
+         # If we haven't found a keymap yet fall back to community layouts
+-        include build_layout.mk
++        include $(TOP_DIR)/build_layout.mk
+     else
+         $(error Could not find keymap)
+         # this state should never be reached
 @@ -306,7 +312,7 @@ endif
  ifeq ("$(USER_NAME)","")
      USER_NAME := $(KEYMAP)
