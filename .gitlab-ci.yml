@@ -20,6 +20,7 @@ build:
       - .git/modules/
       - vendor/qmk_firmware/
   script:
+    - git -C vendor/qmk_firmware reset --hard
     - git submodule update --init --recursive
     - make
   artifacts:
