@@ -4,42 +4,6 @@ extern "C" {
 #include <visualizer/default_animations.h>
 }
 
-enum Backlight: uint8_t {
-    OFF,
-    ON
-};
-
-enum Fn: uint8_t {
-    BACKLIGHT = 0
-};
-
-static Backlight backlight = Backlight::ON;
-
-void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
-    switch(id) {
-    case Fn::BACKLIGHT:
-        if (record->event.pressed) {
-            switch (backlight) {
-            case Backlight::ON:
-                backlight_disable();
-                backlight = Backlight::OFF;
-                break;
-            case Backlight::OFF:
-                backlight_enable();
-                backlight = Backlight::ON;
-                break;
-            }
-        }
-        break;
-    }
-}
-
-const uint16_t fn_actions[] = {
-    [0] = ACTION_LAYER_MOMENTARY(1),
-    [1] = ACTION_LAYER_MOMENTARY(2),
-    [2] = ACTION_FUNCTION(Fn::BACKLIGHT)
-};
-
 static bool initial_update = true;
 
 void initialize_user_visualizer(visualizer_state_t* state) {
@@ -85,7 +49,7 @@ constexpr std::array<std::array<keycode_t, KEYMAP_SIZE>, 2> layers = {
 )keymap"),
     layer(KEYMAP_SIZE, R"keymap(
 ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬────┬────┐
-│   │ F1│ F2│ F3│ F4│ F5│ F6│ F7│ F8│ F9│F10│F11│F12│   │Fn2 │PScr│
+│   │ F1│ F2│ F3│ F4│ F5│ F6│ F7│ F8│ F9│F10│F11│F12│   │ 💡 │PScr│
 ├───┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴─┬─┴────┼────┤
 │     │   │   │   │   │   │   │   │ ⏮ │ ⏯ │ ⏭ │ 🔉│ 🔊│  🔇  │RST │
 ├─────┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴┬──┴──────┼────┤

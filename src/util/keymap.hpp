@@ -94,6 +94,7 @@ constexpr auto str2keycode = util::make_cmap<decltype(STR("")), keycode_t>(
         ("⏹", KC_MEDIA_STOP),
         ("🔅", BL_DEC),
         ("🔆", BL_INC),
+        ("💡", BL_TOGG),
         ("🔇", KC_MUTE),
         ("🔉", KC_VOLD),
         ("🔊", KC_VOLU),
