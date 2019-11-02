@@ -1,3 +1,4 @@
+CFLAGS   += -Wno-error=deprecated
 CPPFLAGS += -std=c++17 -fno-exceptions
 CPPFLAGS += -Isrc -Ivendor
 

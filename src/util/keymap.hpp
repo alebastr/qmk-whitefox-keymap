@@ -11,7 +11,7 @@ using namespace util::literals;
 
 template<size_t Count = 128, class CharT>
 constexpr auto tokenize(const util::basic_string<CharT>& str) {
-    std::array<util::basic_string<CharT>, Count> words{ 0 };
+    std::array<util::basic_string<CharT>, Count> words{ };
     size_t counter = 0;
     size_t pos = 0;
     do {
