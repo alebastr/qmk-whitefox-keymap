@@ -4,6 +4,7 @@
 KEYBOARD := whitefox
 KEYMAP :=
 TARGET ?= whitefox-alebastr-$(KEYMAP_VERSION)
+LAYOUTS := alebastr
 
 TOP_DIR := vendor/qmk_firmware
 

@@ -1,5 +1,5 @@
 CPPFLAGS += -std=c++17 -fno-exceptions
 CPPFLAGS += -Isrc -Ivendor
 
-SRC += \
-	src/main.cpp
+KEYMAP_PATH = .
+KEYMAP_C = src/main.cpp
